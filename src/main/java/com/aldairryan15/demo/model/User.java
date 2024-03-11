@@ -1,11 +1,6 @@
 package com.aldairryan15.demo.model;
-
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -29,6 +24,7 @@ public class User {
     @Column(name = "username", length = 30, nullable = false, updatable = false)
     private String username;
 
+
     @JsonProperty(access = Access.WRITE_ONLY)
     @Column(name = "password", length = 6, nullable = false, updatable = true)
     private String password;
@@ -36,38 +32,49 @@ public class User {
 
     //private List<Task> tasks = new ArrayList<Task>();
 
+
     public User(Integer id, String username, String password) {
         this.Id = id;
         this.username = username;
         this.password = password;
     }
+
     public User() {
     }
+
     public Integer getId() {
         return Id;
     }
+
     public static String getTableName() {
         return TABLE_NAME;
     }
+
     public String getUsername() {
         return username;
     }
+
     public String getPassword() {
         return password;
     }
+
     public void setId(Integer id) {
         Id = id;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(Id);
     }
+    
     @Override
     public boolean equals(Object obj) {
         if(this == obj) return true;
