@@ -13,11 +13,23 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Entity
 @Table(name = User.TABLE_NAME)
+@NoArgsConstructor
+@Getter
+@Setter
 public class User {
+    public interface CreateUser {
+    
+    }
+    public interface UpdateUser {
+    
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
@@ -35,52 +47,11 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Task> tasks = new ArrayList<Task>();
 
-    public List<Task> getTasks() {
-        return this.tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-    }
-
-
     public User(Integer id, String username, String password) {
         this.Id = id;
         this.username = username;
         this.password = password;
     }
-
-    public User() {
-    }
-
-    public Integer getId() {
-        return Id;
-    }
-
-    public static String getTableName() {
-        return TABLE_NAME;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setId(Integer id) {
-        Id = id;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(Id);
